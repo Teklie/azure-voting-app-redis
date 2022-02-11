@@ -19,12 +19,12 @@ pipeline {
             '''
          }
       }
-/*       stage('Start test app') {
+      stage('Start test app') {
          steps {
-            pwsh(script: """
+            sh '''
                docker-compose up -d
                ./scripts/test_container.ps1
-            """)
+            ''''
          }
          post {
             success {
@@ -34,20 +34,20 @@ pipeline {
                echo "App failed to start :("
             }
          }
-      } */
-/*       stage('Run Tests') {
+      }
+      stage('Run Tests') {
          steps {
-            pwsh(script: """
+            sh '''
                pytest ./tests/test_sample.py
-            """)
+            '''
          }
       }
       stage('Stop test app') {
          steps {
-            pwsh(script: """
+            sh '''
                docker-compose down
-            """)
+            '''
          }
-      } */
+      }
    }
 }
