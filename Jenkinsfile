@@ -19,7 +19,7 @@ pipeline {
             '''
          }
       }
-      stage('Start test app') {
+/*       stage('Start test app') {
          steps {
             sh '''
                docker-compose up -d
@@ -48,6 +48,14 @@ pipeline {
                docker-compose down
             '''
          }
+      } */
+   }
+   post {
+      success {
+         echo "Built has succeeded"
+      }
+      failure {
+         echo "Build failed"
       }
    }
 }
