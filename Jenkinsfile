@@ -9,17 +9,17 @@ pipeline {
       }
       stage('Docker Build') {
          steps {
-            pwsh(script: 'docker images -a')
-            pwsh(script: """
+            sh 'docker images -a'
+            sh '''
                cd azure-vote/
                docker images -a
                docker build -t jenkins-pipeline .
                docker images -a
                cd ..
-            """)
+            '''
          }
       }
-      stage('Start test app') {
+/*       stage('Start test app') {
          steps {
             pwsh(script: """
                docker-compose up -d
@@ -34,8 +34,8 @@ pipeline {
                echo "App failed to start :("
             }
          }
-      }
-      stage('Run Tests') {
+      } */
+/*       stage('Run Tests') {
          steps {
             pwsh(script: """
                pytest ./tests/test_sample.py
@@ -48,6 +48,6 @@ pipeline {
                docker-compose down
             """)
          }
-      }
+      } */
    }
 }
